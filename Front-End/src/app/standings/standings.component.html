@@ -1,0 +1,19 @@
+<div class="container">
+    <h4>Driver Standings for {{ year | date: 'yyyy'}}</h4>
+    <table class="table table-borderless">
+        <thead>
+            <tr>
+                <th scope="col">Driver</th>
+                <th scope="col">Points</th>
+                <th><button (click)="onSave(2021)" type="button" class="btn btn-primary"> Change year</button></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let driver of standings">
+                <td>{{driver.Driver.givenName}}&nbsp;{{driver.Driver.familyName}}</td>
+                <td>{{driver.points}}</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+    
