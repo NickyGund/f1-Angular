@@ -12,8 +12,8 @@ export class ErgastService {
             return this.http.get('http://ergast.com/api/f1/'+ year.toString()+ '/drivers.json');
         }
 
-        getYearStandings(year: number): Observable<any>{
-            return this.http.get('https://ergast.com/api/f1/'+ year.toString() + '/driverStandings.json')
+        getYearStandings(year: string): Observable<any>{
+            return this.http.get('https://ergast.com/api/f1/'+ year+'/driverStandings.json')
         }
   
 }

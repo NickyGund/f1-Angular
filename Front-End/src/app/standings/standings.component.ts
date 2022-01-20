@@ -1,6 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChange } from '@angular/core';
 import { ErgastService } from '../ergast.service';
 import { DatePipe } from '@angular/common';
+import { DatePickerComponent } from '../date-picker/date-picker.component';
+import { SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-standings',
@@ -8,12 +10,12 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./standings.component.css']
 })
 
-
 export class StandingsComponent implements OnInit {
 
-  standings: any = {};
+  @Input()
   year: any;
-  beenClicked: boolean = false;
+  standings: any = {};
+  should_open: boolean = false;
   
   constructor(private service: ErgastService, private datePipe: DatePipe) {
     this.year = Date.now(); 
@@ -22,18 +24,29 @@ export class StandingsComponent implements OnInit {
 
   ngOnInit() {
     //contact service
-    this.service.getYearStandings(this.year).subscribe((res) => {
+    this.service.getYearStandings(this.year.toString()).subscribe((res) => {
         this.standings = res.MRData.StandingsTable.StandingsLists[0].DriverStandings;
         console.log(this.standings);
     })
   }
 
-
-  onSave(year: number){
-    
-    this.service.getYearStandings(year).subscribe((res) => {
+  onYearChange(newYear: string){
+    this.year = newYear
+    this.service.getYearStandings(newYear).subscribe((res) => {
       this.standings = res.MRData.StandingsTable.StandingsLists[0].DriverStandings;
-      
-  })
+    })
   }
+
+
+  openChildComponent(){
+    if(this.should_open==true){
+      this.should_open = false
+    }
+    else{
+    this.should_open = true;
+    }
+  }
+
+ 
+
 }

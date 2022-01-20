@@ -5,7 +5,11 @@
             <tr>
                 <th scope="col">Driver</th>
                 <th scope="col">Points</th>
-                <th><button (click)="onSave(2021)" type="button" class="btn btn-primary"> Change year</button></th>
+                <th><button (click)="openChildComponent()" type="button" class="btn btn-primary"> Change year</button>
+                <div *ngIf="should_open">
+                    <app-date-picker (newYearEvent)="onYearChange($event)"></app-date-picker>
+                </div>
+            </th>
             </tr>
         </thead>
         <tbody>

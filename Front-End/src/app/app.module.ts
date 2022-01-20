@@ -8,18 +8,22 @@ import { ErgastService } from './ergast.service';
 import { StandingsComponent } from './standings/standings.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DatePipe } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+import { DatePickerComponent } from './date-picker/date-picker.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DriverListComponent,
-    StandingsComponent
+    StandingsComponent,
+    DatePickerComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    ReactiveFormsModule
   ],
   providers: [
     ErgastService,
